@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Anton, Inter } from "next/font/google";
 import "./globals.css";
+
+const anton = Anton({
+  variable: "--font-anton",
+  weight: ["400"],
+  subsets: ["latin"],
+});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -8,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Mohammed Thariq | React & Next.js Developer",
+  title: "Mohammed Thariq | Portfolio",
   description: "Portfolio of Mohammed Thariq, a React & Next.js Developer specializing in Fintech, mutual fund platforms, and scalable web applications.",
 };
 
@@ -18,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} font-sans antialiased selection:bg-brand-purple/30 selection:text-white`}
+        className={`${anton.variable} ${inter.variable} font-sans antialiased`}
       >
         <div className="flex min-h-screen flex-col">
           {children}

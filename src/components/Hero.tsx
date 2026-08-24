@@ -1,88 +1,117 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { identity } from "@/lib/data";
+import HeroPortrait from "@/components/HeroPortrait";
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
+const container = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+};
 
 export default function Hero() {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-            },
-        },
-    };
+    const sectionRef = useRef<HTMLElement>(null);
+    const [tagIndex, setTagIndex] = useState(0);
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    };
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTagIndex((i) => (i + 1) % identity.roleTags.length);
+        }, 2200);
+        return () => clearInterval(interval);
+    }, []);
+
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start start", "end start"],
+    });
+    const exitOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.4]);
+    const exitY = useTransform(scrollYProgress, [0, 1], ["0%", "-6%"]);
 
     return (
-        <section
-            id="home"
-            className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
-        >
-            {/* Background decoration */}
-            <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-brand-purple/20 rounded-full blur-[128px] pointer-events-none" />
-            <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[128px] pointer-events-none" />
+        <section id="hero" ref={sectionRef} className="relative min-h-screen overflow-hidden">
+            <div className="absolute inset-0 bg-menu-glow" />
+            <div className="absolute inset-0 bg-grid opacity-30" />
 
-            <div className="container mx-auto px-4 md:px-6 relative z-10">
+            <motion.div
+                style={{ opacity: exitOpacity, y: exitY }}
+                className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-16"
+            >
                 <motion.div
-                    variants={containerVariants}
                     initial="hidden"
                     animate="visible"
-                    className="max-w-4xl mx-auto text-center"
+                    variants={container}
+                    className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-16 items-center w-full"
                 >
-                    <motion.div variants={itemVariants} className="mb-6 inline-block">
-                        <span className="px-4 py-2 rounded-full glass border-brand-purple/30 text-brand-accent text-sm font-medium tracking-wide">
-                            Hey there, I am
-                        </span>
-                    </motion.div>
-
-                    <motion.h1
-                        variants={itemVariants}
-                        className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 text-white"
-                    >
-                        Mohammed <span className="text-gradient">Thariq</span>
-                    </motion.h1>
-
-                    <motion.h2
-                        variants={itemVariants}
-                        className="text-xl md:text-3xl font-medium text-slate-300 mb-8"
-                    >
-                        React & Next.js Developer | Fintech Specialist
-                    </motion.h2>
-
-                    <motion.p
-                        variants={itemVariants}
-                        className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed"
-                    >
-                        Passionate React Developer with 2+ years of experience building scalable mutual fund platforms, admin dashboards, and financial technology applications.
-                    </motion.p>
-
-                    <motion.div
-                        variants={itemVariants}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                    >
-                        <Link
-                            href="#projects"
-                            className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-brand-blue font-semibold flex items-center justify-center gap-2 hover:bg-slate-200 transition-colors"
+                    <div>
+                        <motion.p
+                            variants={fadeUp}
+                            className="uppercase text-sm tracking-widest text-muted mb-4"
                         >
-                            View Projects
-                            <ArrowRight size={18} />
-                        </Link>
-                        <Link
-                            href="#contact"
-                            className="w-full sm:w-auto px-8 py-4 rounded-full glass border-brand-purple hover:bg-brand-purple/10 text-white font-semibold flex items-center justify-center gap-2 transition-all"
+                            Hello, I am
+                        </motion.p>
+
+                        <motion.h1
+                            variants={fadeUp}
+                            className="font-display text-5xl md:text-7xl text-ink uppercase leading-[0.95] mb-6"
                         >
-                            Contact Me
-                        </Link>
+                            Mohammed
+                            <br />
+                            Thariq
+                        </motion.h1>
+
+                        <motion.div variants={fadeUp} className="text-xl md:text-2xl text-ink mb-3">
+                            {identity.role}
+                        </motion.div>
+
+                        <motion.div
+                            variants={fadeUp}
+                            className="h-6 overflow-hidden text-sm uppercase tracking-widest text-accent-blue mb-8"
+                        >
+                            <motion.span
+                                key={identity.roleTags[tagIndex]}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, ease }}
+                                className="block"
+                            >
+                                {identity.roleTags[tagIndex]}
+                            </motion.span>
+                        </motion.div>
+
+                        <motion.p
+                            variants={fadeUp}
+                            className="text-base text-muted leading-relaxed max-w-md"
+                        >
+                            Building clean, performant frontends for fintech products — mutual fund
+                            platforms, admin dashboards, and the tools that run on them.
+                        </motion.p>
+                    </div>
+
+                    <motion.div variants={fadeUp} className="flex justify-center md:justify-end">
+                        <HeroPortrait />
                     </motion.div>
                 </motion.div>
-            </div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.9, duration: 0.6 }}
+                    className="max-w-6xl mx-auto w-full flex justify-center mt-16"
+                >
+                    <div className="flex flex-col items-center gap-2 text-[10px] uppercase tracking-widest text-muted">
+                        <span>Scroll to explore</span>
+                        <span className="text-accent-blue">↓</span>
+                    </div>
+                </motion.div>
+            </motion.div>
         </section>
     );
 }

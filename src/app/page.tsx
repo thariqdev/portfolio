@@ -1,25 +1,34 @@
-import Navbar from "@/components/Navbar";
+import BackgroundEffects from "@/components/BackgroundEffects";
+import CustomCursor from "@/components/CustomCursor";
+import ScrollProgress from "@/components/ScrollProgress";
+import SiteNav from "@/components/SiteNav";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Education from "@/components/Education";
-import Contact from "@/components/Contact";
+import AboutSection from "@/components/AboutSection";
+import TechSection from "@/components/TechSection";
+import ExperienceTimeline from "@/components/ExperienceTimeline";
+import EducationSection from "@/components/EducationSection";
+import ProjectShowcase from "@/components/ProjectShowcase";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-brand-blue relative">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Education />
-      <Contact />
+    <div className="relative min-h-screen bg-grain">
+      <BackgroundEffects />
+      <CustomCursor />
+      <ScrollProgress />
+      <SiteNav />
+
+      <main>
+        <Hero />
+        <AboutSection />
+        <TechSection />
+        <ExperienceTimeline />
+        <EducationSection />
+        <ProjectShowcase />
+        <ContactSection />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
