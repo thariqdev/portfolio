@@ -90,8 +90,8 @@ export default function Hero() {
                             variants={fadeUp}
                             className="text-base text-muted leading-relaxed max-w-md"
                         >
-                            Building clean, performant frontends for fintech products — mutual fund
-                            platforms, admin dashboards, and the tools that run on them.
+                            Building backend services and frontends for fintech products — mutual
+                            fund platforms, admin dashboards, and the APIs that run them.
                         </motion.p>
                     </div>
 

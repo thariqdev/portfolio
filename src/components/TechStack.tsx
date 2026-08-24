@@ -4,18 +4,26 @@ import { motion } from "framer-motion";
 import {
     Code2, Layers, Braces, FileType2, Server, Route,
     Database, Globe, Paintbrush, GitBranch, Github,
+    FileCode2, Zap, Table2, KeyRound, Send, BookOpen,
 } from "lucide-react";
 import { techStack, type Level } from "@/lib/data";
 
 const icons: Record<string, typeof Code2> = {
+    Python: FileCode2,
+    FastAPI: Zap,
+    PostgreSQL: Database,
+    SQLAlchemy: Table2,
     "React.js": Code2,
     "Next.js": Layers,
     JavaScript: Braces,
     TypeScript: FileType2,
+    "JWT Auth": KeyRound,
     "Node.js": Server,
     "Express.js": Route,
     MongoDB: Database,
     "REST APIs": Globe,
+    Postman: Send,
+    Swagger: BookOpen,
     "Tailwind CSS": Paintbrush,
     Git: GitBranch,
     GitHub: Github,

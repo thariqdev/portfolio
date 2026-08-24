@@ -1,16 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { identity } from "@/lib/data";
+import { identity, navLinks } from "@/lib/data";
 
 const ease = [0.16, 1, 0.3, 1] as const;
-
-const links = [
-    { label: "Profile", target: "hero" },
-    { label: "Projects", target: "projects" },
-    { label: "Experience", target: "experience" },
-    { label: "Contact", target: "contact" },
-];
 
 const listVariants = {
     hidden: {},
@@ -47,7 +40,7 @@ export default function NavOverlay({ open, onClose }: { open: boolean; onClose: 
                         variants={listVariants}
                         className="flex flex-col gap-2 md:gap-4"
                     >
-                        {links.map((link) => (
+                        {navLinks.map((link) => (
                             <motion.button
                                 key={link.target}
                                 variants={itemVariants}

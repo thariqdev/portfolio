@@ -15,7 +15,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Mohammed Thariq | Portfolio",
-  description: "Portfolio of Mohammed Thariq, a React & Next.js Developer specializing in Fintech, mutual fund platforms, and scalable web applications.",
+  description: "Portfolio of Mohammed Thariq, a full-stack fintech engineer building backend services (Python, FastAPI, PostgreSQL) and frontends (React, Next.js) for mutual fund and wealth-management platforms.",
 };
 
 export default function RootLayout({
