@@ -4,8 +4,8 @@ export const identity = {
     roleTags: ["React", "Next.js", "FastAPI", "Fintech"],
     location: "Kerala, India",
     available: true,
-    email: "thariqmohammed660@gmail.com",
-    linkedin: "https://www.linkedin.com/in/mohammed-thariq-b11b673b2/",
+    email: "thariqmohammed0310@gmail.com",
+    linkedin: "https://www.linkedin.com/in/b-mohammed-thariq-b11b673b2/",
 };
 
 export const navLinks = [

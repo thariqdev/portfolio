@@ -8,7 +8,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const channels = [
     { label: "Email", value: identity.email, href: `mailto:${identity.email}`, icon: Mail, external: false },
-    { label: "LinkedIn", value: "mohammed-thariq", href: identity.linkedin, icon: Linkedin, external: true },
+    { label: "LinkedIn", value: "b-mohammed-thariq", href: identity.linkedin, icon: Linkedin, external: true },
 ];
 
 export default function ContactSection() {
