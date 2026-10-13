@@ -117,6 +117,12 @@ export default function ProjectCardBody({
                         ))}
                     </div>
 
+                    {project.note && (
+                        <p className="text-xs text-muted/80 italic leading-relaxed max-w-md">
+                            {project.note}
+                        </p>
+                    )}
+
                     {project.liveUrl ? (
                         <div className="flex flex-wrap items-center gap-6 pt-2">
                             <a

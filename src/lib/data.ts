@@ -109,9 +109,24 @@ export type Project = {
     secondaryUrl?: string;
     secondaryUrlLabel?: string;
     sourceLabel: string;
+    note?: string;
 };
 
 export const projects: Project[] = [
+    {
+        name: "Career AI",
+        category: "Full-stack / AI",
+        status: "Project",
+        description:
+            "A career tool that tracks the skills you can actually prove, matches you against job postings, and includes a grounded RAG assistant that answers only from your own data, with cited sources.",
+        tags: ["Python", "FastAPI", "PostgreSQL", "Next.js", "TypeScript", "RAG", "Ollama", "Docker"],
+        liveUrl: "https://career-ai-inky-ten.vercel.app",
+        liveUrlLabel: "Live demo",
+        secondaryUrl: "https://github.com/thariqdev/career-ai",
+        secondaryUrlLabel: "Source code",
+        sourceLabel: "Live demo available",
+        note: "Runs on free hosting: the first load can take up to a minute while the server wakes up. Uses made-up demo data, reset daily.",
+    },
     {
         name: "FundsApp",
         category: "Backend Engineering",
